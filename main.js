@@ -2,7 +2,7 @@ import config from "./config.js";
 import ccxt from "ccxt";
 
 const bitflyer = new ccxt.bitflyer(config);
-const orderSize = 0.0003; //約500円
+const orderSize = 0.001; //約2300円
 let record = [];
 let order = null;
 
@@ -43,7 +43,7 @@ function isSell(record) {
   for (let i = 0; i < record.length - 1; i++) {
     if (record[i] < record[i + 1]) cnt++;
   }
-  if (cnt >= 8) return true;
+  if (cnt >= 6) return true;
   else return false;
 }
 
@@ -53,7 +53,7 @@ function isLosscut(record) {
   for (let i = 0; i < record.length - 1; i++) {
     if (record[i] > record[i + 1]) cnt++;
   }
-  if (cnt >= 10) return true;
+  if (cnt >= 8) return true;
   else return false;
 }
 
@@ -63,7 +63,7 @@ function isBuy(record) {
   for (let i = 0; i < record.length - 1; i++) {
     if (record[i] > record[i + 1]) cnt++;
   }
-  if (cnt >= 8) return true;
+  if (cnt >= 6) return true;
   else return false;
 }
 while (1) {
